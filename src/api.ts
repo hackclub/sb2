@@ -42,6 +42,11 @@ receiver.router.get(`/api/demo-channel-lookup/:id`, async (req: Request, res: Re
   }
 })
 
+receiver.router.get(`/api/demo`, async (req: Request, res: Response, next: NextFunction) => {
+  const results = await prisma.fiveMinEmaView.findMany({})
+  res.json(results)
+})
+
 
 receiver.router.get(`/api/convos`, cors(), (req: Request, res: Response, next: NextFunction) => {
   res.json(masStats(maPool))
